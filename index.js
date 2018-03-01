@@ -1,4 +1,4 @@
-const parseRegex = /([^=; ]+)=?([^;]+)?;?/g; // Formerly ([A-Za-z0-9%]+)=?([A-Za-z0-9%]+)?;?
+var parseRegex = /([^=; ]+)=?([^;]+)?;?/g; // Formerly ([A-Za-z0-9%]+)=?([A-Za-z0-9%]+)?;?
 
 /**
 * Super lightweight cookie parser and serializer
@@ -11,9 +11,8 @@ module.exports = {
 	* @param {string} cookieString - A cookie string
 	* @returns {Object} Interpreted cookie data as an Object
 	*/
-	"parse": (cookieString) => {
+	"parse": function(cookieString) {
 		var currentPair = parseRegex.exec(cookieString);
-
 		var outputPairs = {};
 
 		while (currentPair !== null) {
@@ -28,7 +27,7 @@ module.exports = {
 	* @param {Object} cookieData - Object to serialize to cookie string
 	* @returns {string} Cookie string
 	*/
-	"serialize": (cookieData) => {
+	"serialize": function(cookieData) {
 		var cookieProps = Object.keys(cookieData);
 		var serializedCookie = "";
 
